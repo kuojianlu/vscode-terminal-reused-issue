@@ -1,0 +1,68 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Apps",
+            "dependsOn": [
+                "Npm Install",
+                "Run All Apps"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "Npm Install",
+            "type": "shell",
+            "command": "npm install"
+        },
+        {
+            "label": "Run All Apps",
+            "dependsOn": [
+                "Run App 1",
+                "Run App 2"
+            ],
+            "dependsOrder": "parallel"
+        },
+        {
+            "label": "Run App 1",
+            "type": "shell",
+            "command": "node App1.js",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".*",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": "This is app1..."
+                }
+            }
+        },
+        {
+            "label": "Run App 2",
+            "type": "shell",
+            "command": "node App2.js",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".*",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": "This is app2..."
+                }
+            }
+        }
+    ]
+}
